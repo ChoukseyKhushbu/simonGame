@@ -4,9 +4,12 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/user.js");
+const loginCheck = require("../middlewares/loginCheck");
 
-router.post("/login", function (req, res) {
+router.post("/", function (req, res) {
+  console.log(req.body);
   const { username, password } = req.body;
+  console.log(username + " " + password);
   let errors = {};
 
   if (!username) {
@@ -28,25 +31,28 @@ router.post("/login", function (req, res) {
         if (user) {
           if (bcrypt.compareSync(password, user.password)) {
             const accessToken = jwt.sign(
-             {
-                name :user.username,
+              {
                 sub: user.id,
+                username: user.username,
               },
               process.env.JWT_SECRET
             );
-            res.status(200).json({
-              success: true,
-              data: {
-                user: {
-                  username: user.username,
-                },
-              },
-              token: accessToken,
-              msg:"successfully logged in"
-            });
+            // res.status(200).json({
+            //   success: true,
+            //   data: {
+            //     user: {
+            //       username: user.username,
+            //     },
+            //   },
+            //   token: accessToken,
+            //   msg: "successfully logged in",
+            // });
 
             // TODO: Set the cookie with the jwtToken
-            // res.redirect('/menu');
+            req.session = {
+              token: accessToken,
+            };
+            res.redirect("/menu");
           } else {
             res.status(401).json({
               success: false,
@@ -61,7 +67,7 @@ router.post("/login", function (req, res) {
             .hash(password, +process.env.BCRYPT_SALT_ROUNDS)
             .then((hashedPassword) => {
               const user = new User({
-                  _id : new mongoose.Types.ObjectId(),
+                _id: new mongoose.Types.ObjectId(),
                 username: username,
                 password: hashedPassword,
               });
@@ -71,21 +77,24 @@ router.post("/login", function (req, res) {
                   const accessToken = jwt.sign(
                     {
                       sub: user.id,
-                      name:user.username
+                      username: user.username,
                     },
                     process.env.JWT_SECRET
                   );
-                  res.status(200).json({
-                    success: true,
-                    data: {
-                      user: {
-                        username: user.username,
-                      },
-                    },
+                  // res.status(200).json({
+                  //   success: true,
+                  //   data: {
+                  //     user: {
+                  //       username: user.username,
+                  //     },
+                  //   },
+                  //   token: accessToken,
+                  //   msg: "successfully registered",
+                  // });
+                  req.session = {
                     token: accessToken,
-                    msg:"successfully registered"
-                  });
-                  // res.redirect('/menu');
+                  };
+                  res.redirect("/menu");
                 })
                 .catch((err) => {
                   console.error(err);
@@ -114,6 +123,8 @@ router.post("/login", function (req, res) {
   }
 });
 
-router.post("/logout", function (req, res) {});
+router.get("/", loginCheck, function (req, res) {
+  res.render("login");
+});
 
 module.exports = router;

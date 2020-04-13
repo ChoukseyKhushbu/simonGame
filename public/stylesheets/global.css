@@ -1,0 +1,84 @@
+:root {
+  --bg-1-color: #0d3a7e;
+  --bg-2-color: #2560a6;
+  --button-color: #3273c0;
+  --button-hover-color: #6d98cc;
+  --text-color: white;
+  --placeholder-color: #94aecd;
+  --yellow: #f2c94c;
+  --blue: #56ccf2;
+  --red: #eb5757;
+  --green: #27ae60;
+
+  font-family: "Press Start 2P", cursive; /* This set's font to all the general things (p, h1...) */
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+input,
+button,
+a {
+  font-family: "Press Start 2P", cursive;
+  color: var(--text-color);
+  padding: 15px 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  background: var(--bg-2-color);
+  border: 0px;
+  font-size: 0.9rem; /* 16px * 0.9 */
+}
+
+::placeholder {
+  color: var(--placeholder-color);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--placeholder-color);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--placeholder-color);
+}
+
+.button {
+  background-color: var(--button-color);
+  border: 0px;
+  font-size: 1rem; /* // 16px * 1 */
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--button-hover-color);
+}
+
+.button:active {
+  top: 3px;
+}
+
+.button:active::after {
+  bottom: -3px; /* // (+3px - 6px) */
+}
+
+.button::after {
+  content: "";
+  background-color: var(--bg-2-color);
+  /* // width: 110%; // this will take widht of button;
+	// 110% is bad, because then the width will be dependent on the content. */
+  width: calc(100% - 16px);
+  height: calc(100% - 12px);
+  position: absolute;
+  left: 8px;
+  bottom: -6px;
+  z-index: -1;
+}
