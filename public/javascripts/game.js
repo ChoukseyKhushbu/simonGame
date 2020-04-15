@@ -8,6 +8,19 @@ var isDemonstrating = true;
 const timeBar = document.querySelector(".timeBar");
 const timeText = document.querySelector(".timeText");
 
+generateNextLevel();
+
+$("div#start").on("click", function () {
+  startNewLevel();
+});
+
+$(".btn").on("click", userSequence);
+
+function startNewLevel() {
+  $("div#start").hide();
+  demonstrateLevel();
+}
+
 function generateNextLevel() {
   userClickedPattern = [];
   ++level;
@@ -21,17 +34,17 @@ function generateNextLevel() {
   gamePattern.push(randomChosenColor);
 }
 
-generateNextLevel();
-
-$("div#start").on("click", function () {
-  startNewLevel();
-});
-
-$(".btn").on("click", userSequence);
-
-function startNewLevel() {
-  $("div#start").hide();
-  demonstrateLevel();
+function demonstrateLevel() {
+  $("div#blockScreen").show();
+  for (let i = 0; i < gamePattern.length; i++) {
+    setTimeout(() => {
+      playSound(gamePattern[i]);
+      animatePress(gamePattern[i]);
+      if (i == gamePattern.length - 1) {
+        $("div#blockScreen").hide();
+      }
+    }, 1000 * i);
+  }
 }
 
 function userSequence() {
@@ -57,39 +70,6 @@ function userSequence() {
   checkPattern(userClickedPattern.length - 1);
 }
 
-function demonstrateLevel() {
-  $("div#blockScreen").show();
-  for (let i = 0; i < gamePattern.length; i++) {
-    setTimeout(() => {
-      playSound(gamePattern[i]);
-      animatePress(gamePattern[i]);
-      if (i == gamePattern.length - 1) {
-        $("div#blockScreen").hide();
-      }
-    }, 1000 * i);
-  }
-}
-
-function endGame(reason) {
-  clearInterval(timer);
-  $("div#gameover").text(reason);
-  $("div#gameover").css("display", "flex");
-  //hit POST/highscore
-  $.post(
-    "/highscores",
-    {
-      level: level - 1,
-    },
-    function (data, status) {
-      if (data.success) {
-        window.location.href = "/highscores";
-      } else {
-        console.log("error");
-      }
-    }
-  );
-}
-
 function checkPattern(currentLevel) {
   if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
     if (userClickedPattern.length == gamePattern.length) {
@@ -113,4 +93,24 @@ function animatePress(currentColour) {
   setTimeout(() => {
     $("#" + currentColour).removeClass("pressed");
   }, 100);
+}
+
+function endGame(reason) {
+  clearInterval(timer);
+  $("div#gameover").text(reason);
+  $("div#gameover").css("display", "flex");
+  //hit POST/highscore
+  $.post(
+    "/highscores",
+    {
+      level: level - 1,
+    },
+    function (data, status) {
+      if (data.success) {
+        window.location.href = "/highscores";
+      } else {
+        console.log("error");
+      }
+    }
+  );
 }

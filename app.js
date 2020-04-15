@@ -8,14 +8,12 @@ var dotenv = require("dotenv");
 var session = require("cookie-session");
 dotenv.config();
 
-var indexRouter = require("./routes/index");
+var menuRouter = require("./routes/menu");
 var loginRouter = require("./routes/login");
-// var menuRouter = require("./routes/menu");
 var gameRouter = require("./routes/game");
 var instructionsRouter = require("./routes/instructions");
 var highscoresRouter = require("./routes/highscores");
 var logoutRouter = require("./routes/logout");
-var instructionsRouter = require("./routes/instructions");
 
 var app = express();
 
@@ -48,7 +46,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // app.use("/", indexRouter);
 app.use("/login", loginRouter);
-app.use("/", indexRouter);
+app.use("/", menuRouter);
 app.use("/game", gameRouter);
 app.use("/instructions", instructionsRouter);
 app.use("/highscores", highscoresRouter);

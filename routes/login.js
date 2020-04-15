@@ -52,7 +52,7 @@ router.post("/", function (req, res) {
             req.session = {
               token: accessToken,
             };
-            res.redirect("/menu");
+            res.redirect("/");
           } else {
             res.status(401).json({
               success: false,
@@ -94,7 +94,7 @@ router.post("/", function (req, res) {
                   req.session = {
                     token: accessToken,
                   };
-                  res.redirect("/menu");
+                  res.redirect("/");
                 })
                 .catch((err) => {
                   console.error(err);
