@@ -9,7 +9,7 @@ const loginCheck = (req, res, next) => {
         next();
       } else {
         console.log("user already logged in hence redirected to menu");
-        res.redirect("/menu");
+        res.redirect("/");
       }
     });
   } else {

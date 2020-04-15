@@ -10,7 +10,7 @@ dotenv.config();
 
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
-var menuRouter = require("./routes/menu");
+// var menuRouter = require("./routes/menu");
 var gameRouter = require("./routes/game");
 var instructionsRouter = require("./routes/instructions");
 var highscoresRouter = require("./routes/highscores");
@@ -46,9 +46,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+// app.use("/", indexRouter);
 app.use("/login", loginRouter);
-app.use("/menu", menuRouter);
+app.use("/", indexRouter);
 app.use("/game", gameRouter);
 app.use("/instructions", instructionsRouter);
 app.use("/highscores", highscoresRouter);
