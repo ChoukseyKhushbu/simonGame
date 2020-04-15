@@ -46,7 +46,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", loginRouter);
+app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/menu", menuRouter);
 app.use("/game", gameRouter);
