@@ -53,6 +53,15 @@ function endGame() {
   //   clearInterval(interval);
   $("div#gameover").css("display", "flex");
   //hit POST/highscore
+  $.post(
+    "/highscores",
+    {
+      level: level,
+    },
+    function (data, status) {
+      console.log(status);
+    }
+  );
 }
 
 function checkPattern(currentLevel) {
@@ -63,7 +72,6 @@ function checkPattern(currentLevel) {
       //   clearInterval(interval);
       generateNextLevel();
       $("div#level").text("level " + level);
-      //show div.start
       $("div#start").show();
     }
   } else {

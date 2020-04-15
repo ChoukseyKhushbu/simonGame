@@ -11,7 +11,7 @@ dotenv.config();
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var menuRouter = require("./routes/menu");
-var startRouter = require("./routes/start");
+var gameRouter = require("./routes/game");
 var instructionsRouter = require("./routes/instructions");
 var highscoresRouter = require("./routes/highscores");
 
@@ -27,7 +27,6 @@ mongoose.connect(process.env.URI, {
 });
 
 //setting cookie-session
-var expiryDate = new Date(Date.now() + 60 * 60 * 1000);
 
 app.use(
   session({
@@ -48,7 +47,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/menu", menuRouter);
-app.use("/start", startRouter);
+app.use("/game", gameRouter);
 app.use("/instructions", instructionsRouter);
 app.use("/highscores", highscoresRouter);
 
