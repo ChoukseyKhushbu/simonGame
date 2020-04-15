@@ -38,10 +38,11 @@
 }
 article {
   background-color: var(--button-color);
-  text-align: center;
-  width: 500px;
+  text-align: left;
+  width: 700px;
   padding: 20px;
   position: relative;
+  line-height: 1.5;
 }
 
 .table::after,
