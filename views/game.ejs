@@ -7,6 +7,7 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
     <link rel="stylesheet" href="stylesheets/global.css" />
     <link rel="stylesheet" href="stylesheets/game.css" />
     <title>Document</title>
@@ -14,16 +15,21 @@
 
   <body>
     <div class="container">
-      <div id="level"><h1>LEVEL</h1></div>
+      <div id="level"></div>
       <div class="gridContainer">
         <div id="start">START</div>
         <div id="gameover">GAME OVER</div>
+        <div id="blockScreen"></div>
         <div class="btn" id="green"></div>
         <div class="btn" id="red"></div>
         <div class="btn" id="yellow"></div>
         <div class="btn" id="blue"></div>
       </div>
-      <div id="timer"></div>
+
+      <div class="timeContainer">
+        <div class="timeText"></div>
+        <div class="timeBar"></div>
+      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

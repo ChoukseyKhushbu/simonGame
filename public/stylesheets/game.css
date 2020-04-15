@@ -5,7 +5,9 @@
   align-items: center;
   justify-content: space-around;
 }
-
+#level {
+  font-size: 2.5rem;
+}
 .gridContainer {
   position: relative;
   background: var(--bg-2-color);
@@ -18,6 +20,11 @@
   gap: 10px;
 }
 
+.gridContainer > div {
+  cursor: pointer;
+}
+
+#blockScreen,
 #start,
 #gameover {
   text-align: center;
@@ -30,10 +37,17 @@
   height: 100%;
   border-radius: 50% 50%;
   background-color: var(--blue-overlay);
+  cursor: pointer;
 }
 
+#blockScreen,
 #gameover {
   display: none;
+}
+
+#blockScreen {
+  cursor: default;
+  background-color: transparent;
 }
 #green {
   background: var(--green);
@@ -53,10 +67,36 @@
   border-radius: 10px 10px 250px 10px;
 }
 
-#timer {
+/* #timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+/* background: #0d3a7e; 
+ } */
+
+.timeContainer {
   background: #2560a6;
   height: 50px;
-  width: 200px;
+  width: 300px;
+  position: relative;
+  padding: 5px;
+}
+.timeText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.timeBar {
+  position: absolute;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  background: #3273c0;
 }
 
 .pressed {

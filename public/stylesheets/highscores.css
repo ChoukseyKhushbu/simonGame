@@ -1,8 +1,9 @@
 .table {
-  background-color: var(--bg-2-color);
+  background-color: var(--button-color);
   display: flex;
   flex-direction: row;
   width: 400px;
+  position: relative;
 }
 
 .container {
@@ -36,8 +37,21 @@
   margin-top: 20px;
 }
 article {
-  background-color: var(--bg-2-color);
+  background-color: var(--button-color);
   text-align: center;
   width: 500px;
   padding: 20px;
+  position: relative;
+}
+
+.table::after,
+article::after {
+  position: absolute;
+  background-color: var(--bg-2-color);
+  height: 100%;
+  width: calc(100% - 16px);
+  left: 8px;
+  bottom: -6px;
+  content: "";
+  z-index: -1;
 }
