@@ -1,5 +1,43 @@
 .table {
+  background-color: var(--bg-2-color);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  width: 400px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.logo {
+  margin-top: 30px;
+  width: 150px;
+  height: 150px;
+}
+
+.table > div {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.table > .name {
+  text-align: left;
+  flex-grow: 4;
+}
+.table > .number {
+  min-width: 30px;
+}
+.button {
+  margin-top: 20px;
+}
+article {
+  background-color: var(--bg-2-color);
+  text-align: center;
+  width: 500px;
+  padding: 20px;
 }

@@ -59,7 +59,11 @@ function endGame() {
       level: level,
     },
     function (data, status) {
-      console.log(status);
+      if (data.success) {
+        window.location.href = "/highscores";
+      } else {
+        console.log("error");
+      }
     }
   );
 }

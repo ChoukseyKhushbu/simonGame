@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
-router.get("/", function (req, res) {
+const jwtCheck = require("../middlewares/jwtCheck");
+router.get("/", jwtCheck, function (req, res) {
   res.render("game");
 });
 

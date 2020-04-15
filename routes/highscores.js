@@ -4,14 +4,16 @@ const mongoose = require("mongoose");
 const Highscores = require("../models/highscore");
 const jwtCheck = require("../middlewares/jwtCheck");
 
-router.get("/", function (req, res) {
+router.get("/", jwtCheck, function (req, res) {
   Highscores.find({})
     .populate("userid")
     .sort({ level: -1 })
+    .limit(10)
     .exec(function (err, docs) {
       if (err) {
         console.log(err);
       } else {
+        console.log(docs);
         res.render("highscores", { usersWithHighscores: docs });
       }
     });
@@ -27,10 +29,14 @@ router.post("/", jwtCheck, function (req, res) {
   });
   newScore
     .save()
-    .then(() => {
+    .then((score) => {
       console.log("added successfully");
-      // res.status(200).json(score);
-      res.redirect("/highscores");
+      res.status(200).json({
+        success: true,
+        data: {
+          highscore: score,
+        },
+      });
     })
     .catch((err) => {
       console.log(err);

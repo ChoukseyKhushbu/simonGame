@@ -14,6 +14,8 @@ var menuRouter = require("./routes/menu");
 var gameRouter = require("./routes/game");
 var instructionsRouter = require("./routes/instructions");
 var highscoresRouter = require("./routes/highscores");
+var logoutRouter = require("./routes/logout");
+var instructionsRouter = require("./routes/instructions");
 
 var app = express();
 
@@ -50,6 +52,7 @@ app.use("/menu", menuRouter);
 app.use("/game", gameRouter);
 app.use("/instructions", instructionsRouter);
 app.use("/highscores", highscoresRouter);
+app.use("/logout", logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
