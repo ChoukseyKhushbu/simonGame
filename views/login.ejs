@@ -19,12 +19,18 @@
 
       <form action="/login" method="POST">
         <input type="text" name="username" placeholder="Username" required />
+        <%if(errors && errors.username) {%>
+        <div class="error"><%=errors.username%></div>
+        <%}%>
         <input
           type="password"
           name="password"
           placeholder="Password"
           required
         />
+        <%if(errors && errors.password) {%>
+        <div class="error"><%=errors.password%></div>
+        <%}%>
         <button class="button" type="submit">Login</button>
       </form>
     </div>

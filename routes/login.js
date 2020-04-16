@@ -20,9 +20,12 @@ router.post("/", function (req, res) {
   }
 
   if (!(Object.entries(errors).length === 0 && errors.constructor === Object)) {
-    res.status(422).json({
-      success: false,
-      errors: errors,
+    // res.status(422).json({
+    //   success: false,
+    //   errors: errors,
+    // });
+    res.render("login", {
+      errors,
     });
   } else {
     User.findOne({ username: username })
@@ -54,8 +57,13 @@ router.post("/", function (req, res) {
             };
             res.redirect("/");
           } else {
-            res.status(401).json({
-              success: false,
+            // res.status(401).json({
+            //   success: false,
+            //   errors: {
+            //     password: "Invalid Password",
+            //   },
+            // });
+            res.render("login", {
               errors: {
                 password: "Invalid Password",
               },
@@ -124,7 +132,7 @@ router.post("/", function (req, res) {
 });
 
 router.get("/", loginCheck, function (req, res) {
-  res.render("login");
+  res.render("login", { errors: {} });
 });
 
 module.exports = router;
