@@ -65,6 +65,12 @@ article::after {
 .pageContainer a,
 .pageContainer div {
   margin: 20px 5px;
+  padding: 10px 15px;
+  font-size: 0.75rem;
+}
+
+.pageContainer div {
+  padding: 10px 10px;
 }
 
 .active {

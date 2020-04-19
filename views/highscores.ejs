@@ -37,7 +37,7 @@
         <% }else{ %>
         <a class="button" href="?page=1">1</a>
         <% }%> <% if(currentPage >3){ %>
-        <div>---</div>
+        <div>-</div>
         <%}%> <% if(currentPage > 2 ){ %>
         <a class="button" href="?page=<%= currentPage-1 %>"
           ><%= currentPage-1 %></a
@@ -51,7 +51,7 @@
           ><%= currentPage+1 %></a
         >
         <%}%> <% if(currentPage <= lastPage-3){ %>
-        <div>---</div>
+        <div>-</div>
         <%}%> <%if(currentPage==lastPage){%>
         <a class="button active" href="?page=<%= lastPage %>"
           ><%= lastPage %></a
