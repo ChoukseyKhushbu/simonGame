@@ -39,7 +39,8 @@
 article {
   background-color: var(--button-color);
   text-align: left;
-  width: 700px;
+  max-width: 700px;
+  width: 80%;
   padding: 20px;
   position: relative;
   line-height: 1.5;
@@ -75,4 +76,13 @@ article::after {
 
 .active {
   background-color: var(--button-hover-color);
+}
+
+@media only screen and (max-width: 375px) {
+  .table > div {
+    padding: 10px 0.2rem;
+  }
+  .table {
+    width: 80%;
+  }
 }
