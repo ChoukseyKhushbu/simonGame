@@ -56,3 +56,17 @@ article::after {
   content: "";
   z-index: -1;
 }
+
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.pageContainer a,
+.pageContainer div {
+  margin: 20px 5px;
+}
+
+.active {
+  background-color: var(--button-hover-color);
+}

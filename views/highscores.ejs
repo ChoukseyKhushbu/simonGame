@@ -26,11 +26,40 @@
       </div>
       <% usersWithHighscores.forEach((score,index)=>{ %>
       <div class="table">
-        <div class="number"><%=index+1%></div>
+        <div class="number"><%=startRank+index%></div>
         <div class="name"><%= score.userid.username %></div>
         <div class="level"><%= score.level %></div>
       </div>
       <% }) %>
+      <div class="pageContainer">
+        <% if(currentPage==1){ %>
+        <a class="button active" href="?page=1">1</a>
+        <% }else{ %>
+        <a class="button" href="?page=1">1</a>
+        <% }%> <% if(currentPage >3){ %>
+        <div>---</div>
+        <%}%> <% if(currentPage > 2 ){ %>
+        <a class="button" href="?page=<%= currentPage-1 %>"
+          ><%= currentPage-1 %></a
+        >
+        <% } %> <% if(currentPage != 1 && currentPage != lastPage){ %>
+        <a class="button active" href="?page=<%= currentPage %>"
+          ><%= currentPage %></a
+        >
+        <% } %> <% if(currentPage < lastPage-1) {%>
+        <a class="button" href="?page=<%= currentPage + 1 %>"
+          ><%= currentPage+1 %></a
+        >
+        <%}%> <% if(currentPage <= lastPage-3){ %>
+        <div>---</div>
+        <%}%> <%if(currentPage==lastPage){%>
+        <a class="button active" href="?page=<%= lastPage %>"
+          ><%= lastPage %></a
+        >
+        <%}else{%>
+        <a class="button" href="?page=<%= lastPage %>"><%= lastPage %></a>
+        <%}%>
+      </div>
       <a class="button" href="/">Go Back</a>
     </div>
   </body>

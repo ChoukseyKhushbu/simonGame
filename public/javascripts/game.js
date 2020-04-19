@@ -5,8 +5,8 @@ var timer;
 var buttonColours = ["red", "blue", "yellow", "green"];
 var isDemonstrating = true;
 
-const timeBar = document.querySelector(".timeBar");
-const timeText = document.querySelector(".timeText");
+var timeBar = document.querySelector(".timeBar");
+var timeText = document.querySelector(".timeText");
 
 generateNextLevel();
 

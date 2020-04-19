@@ -71,7 +71,7 @@ input {
 }
 
 .button:active::after {
-  bottom: -3px; /* // (+3px - 6px) */
+  bottom: -3px; /*  (+3px - 6px) */
 }
 
 .button::after {
