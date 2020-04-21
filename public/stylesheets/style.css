@@ -5,10 +5,23 @@ div.container {
   align-items: center;
   justify-content: center;
 }
-
+/* .logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+} */
 .logo {
   width: 200px;
+  /* position: absolute;
+  z-index: -1; */
 }
+/*
+.logo_text {
+  width: 90%;
+} */
+
 form {
   display: flex;
   flex-direction: column;
