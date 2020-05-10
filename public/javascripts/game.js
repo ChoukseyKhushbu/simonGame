@@ -17,8 +17,18 @@
   $(".btn").on("click", userSequence);
 
   function startNewLevel() {
-    $("div#start").hide();
-    setTimeout(demonstrateLevel, 500);
+    let i = 3;
+
+    var interval = setInterval(function CountDown() {
+      $("div#start").text = i;
+      i--;
+    }, 1000);
+
+    if (i === 0) {
+      clearInterval(interval);
+      $("div#start").hide();
+      setTimeout(demonstrateLevel, 500);
+    }
   }
 
   function generateNextLevel() {
