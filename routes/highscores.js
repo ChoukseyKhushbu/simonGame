@@ -5,7 +5,9 @@ const Highscores = require("../models/highscore");
 const jwtCheck = require("../middlewares/jwtCheck");
 
 router.get("/", jwtCheck, async (req, res) => {
+  console.log(req.query.page);
   const page = Number(req.query.page || 1);
+  const scoreID=req.query.scoreID;
   const skip = (page - 1) * 10;
   try {
     const highscores = await Highscores.find({})
@@ -22,12 +24,14 @@ router.get("/", jwtCheck, async (req, res) => {
 
     console.log(documentCount);
     console.log(highscores);
+    console.log(typeof(highscores[0]._id))
 
     res.render("highscores", {
       usersWithHighscores: highscores,
       lastPage: Math.ceil(documentCount / 10),
       startRank: skip + 1,
       currentPage: page,
+      scoreID:scoreID,
     });
   } catch (err) {
     console.log(err);
@@ -36,28 +40,10 @@ router.get("/", jwtCheck, async (req, res) => {
       errors: err.message,
     });
   }
-
-  // Highscores.find({})
-  //   .populate("userid")
-  //   .sort({ level: "desc", createdAt: "asc" })
-  //   .skip(skip)
-  //   .limit(10)
-  //   .exec(function (err, docs) {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       console.log(docs);
-  //       res.render("highscores", {
-  //         usersWithHighscores: docs,
-  //         startRank: skip + 1,
-  //       });
-  //     }
-  //   });
 });
 
 router.post("/", jwtCheck, function (req, res) {
   const level = req.body.level;
-
   const newScore = new Highscores({
     _id: new mongoose.Types.ObjectId(),
     userid: req.user.id,
@@ -66,13 +52,24 @@ router.post("/", jwtCheck, function (req, res) {
   newScore
     .save()
     .then((score) => {
-      console.log("added successfully");
+      const count = Highscores.find({ level: { $gte: level } }).countDocuments();
+      // console.log(count);
+      return count;
+    }).then((count) => {
+      console.log("count: ",count);
+      const page = Math.ceil(count / 10);
+      console.log("page: ",page);
       res.status(200).json({
         success: true,
         data: {
-          highscore: score,
+          highscore: newScore,
+          page: page,
+          rank: count,
         },
       });
+    }).catch((err) => {
+      console.log(err);
+      console.log("page not found");
     })
     .catch((err) => {
       console.log(err);
@@ -84,3 +81,4 @@ router.post("/", jwtCheck, function (req, res) {
 });
 
 module.exports = router;
+//Highscores.findById(score._id).sort({ level: "desc", createdAt: "asc" }).count();

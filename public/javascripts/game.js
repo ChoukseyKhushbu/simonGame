@@ -54,7 +54,7 @@ function userSequence() {
   if (userClickedPattern.length == 0 && levl != 1) {
     var time = levl;
     timer = setInterval(function () {
-      console.log(timeText);
+      // console.log(timeText);
       timeBar.style.width = "calc(".concat((time / levl) * 100, "% - 10px)");
       timeText.innerHTML = time + "s";
       time--;
@@ -107,9 +107,12 @@ function endGame(reason) {
     {
       level: levl - 1,
     },
-    function (data, status) {
-      if (data.success) {
-        window.location.href = "/highscores";
+    function (dataReceived, status) {
+      const {data,success}= dataReceived; 
+      if (success) {
+        console.log(success);
+        console.log(data.page);
+        window.location.href = `/highscores?page=${data.page}&scoreID=${data.highscore._id}`;
       } else {
         console.log("error");
       }

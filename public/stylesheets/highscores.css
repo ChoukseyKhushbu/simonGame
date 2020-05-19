@@ -76,3 +76,7 @@ article::after {
 .active {
   background-color: var(--button-hover-color);
 }
+
+.highlight{
+  background-color:var(--button-hover-color);
+}
