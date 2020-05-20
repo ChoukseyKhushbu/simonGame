@@ -10,7 +10,9 @@ var isDemonstrating = true;
 var timeBar = document.querySelector(".timeBar");
 var timeText = document.querySelector(".timeText");
 generateNextLevel();
-$("div#start").on("click", function () {
+
+$("div#start").one("click", function () {
+  console.log(levl);
   startNewLevel();
 });
 // startNewLevel();
@@ -19,19 +21,18 @@ $(".btn").on("click", userSequence);
 function startNewLevel() {
   var countloop = function countloop(i) {
     setTimeout(function () {
-     $("div#start").text(4-i);
+      $("div#start").text(4-i);
       if (i > 3) {
         $("div#start").hide();
-          demonstrateLevel();
-          $("div#start").text("Next level in->");
+        demonstrateLevel();
+        $("div#start").text("Next level in->");
       }
     }, 1000 * i);
   };
-
+  
   for (var i = 1; i <= 4; i++) {
     countloop(i);
   }
-
 }
 
 function generateNextLevel() {
