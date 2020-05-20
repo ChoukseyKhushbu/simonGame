@@ -29,6 +29,7 @@
 #gameover {
   text-align: center;
   display: flex;
+  line-height: 1.2em;
   align-items: center;
   justify-content: center;
   font-size: 3rem;

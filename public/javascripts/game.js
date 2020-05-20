@@ -10,14 +10,29 @@ var isDemonstrating = true;
 var timeBar = document.querySelector(".timeBar");
 var timeText = document.querySelector(".timeText");
 generateNextLevel();
-$("div#start").on("click", function () {
+
+$("div#start").one("click", function () {
+  console.log(levl);
   startNewLevel();
 });
+// startNewLevel();
 $(".btn").on("click", userSequence);
 
 function startNewLevel() {
-  $("div#start").hide();
-  demonstrateLevel();
+  var countloop = function countloop(i) {
+    setTimeout(function () {
+      $("div#start").text(4-i);
+      if (i > 3) {
+        $("div#start").hide();
+        demonstrateLevel();
+        $("div#start").text("Next level in->");
+      }
+    }, 1000 * i);
+  };
+  
+  for (var i = 1; i <= 4; i++) {
+    countloop(i);
+  }
 }
 
 function generateNextLevel() {
@@ -79,6 +94,7 @@ function checkPattern(currentLevel) {
       clearInterval(timer);
       generateNextLevel();
       $("div#start").show();
+      startNewLevel();
     }
   } else {
     endGame("WRONG CLICK");
@@ -102,20 +118,20 @@ function endGame(reason) {
   $("div#gameover").text(reason);
   $("div#gameover").css("display", "flex"); //hit POST/highscore
 
-  $.post(
-    "/highscores",
-    {
-      level: levl - 1,
-    },
-    function (dataReceived, status) {
-      const {data,success}= dataReceived; 
-      if (success) {
-        console.log(success);
-        console.log(data.page);
-        window.location.href = `/highscores?page=${data.page}&scoreID=${data.highscore._id}`;
-      } else {
-        console.log("error");
-      }
-    }
-  );
+  // $.post(
+  //   "/highscores",
+  //   {
+  //     level: levl - 1,
+  //   },
+  //   function (dataReceived, status) {
+  //     const {data,success}= dataReceived; 
+  //     if (success) {
+  //       console.log(success);
+  //       console.log(data.page);
+  //       window.location.href = `/highscores?page=${data.page}&scoreID=${data.highscore._id}`;
+  //     } else {
+  //       console.log("error");
+  //     }
+  //   }
+  // );
 }
