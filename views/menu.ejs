@@ -20,7 +20,11 @@
 
       <a class="button" href="/game">Start</a>
       <a class="button" href="/instructions">Instructions</a>
-      <a class="button" href="/highscores">High Scores</a>
+      <% if(scoreID){%>
+        <a class="button" href="/highscores?page=1&scoreID=<%= scoreID %>">High Scores</a>
+      <%}else{%>
+        <a class="button" href="/highscores">High Scores</a>
+      <%}%>
       <a class="button" href="/logout">Log Out</a>
     </div>
   </body>
