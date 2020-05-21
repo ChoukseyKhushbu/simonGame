@@ -118,20 +118,20 @@ function endGame(reason) {
   $("div#gameover").text(reason);
   $("div#gameover").css("display", "flex"); //hit POST/highscore
 
-  // $.post(
-  //   "/highscores",
-  //   {
-  //     level: levl - 1,
-  //   },
-  //   function (dataReceived, status) {
-  //     const {data,success}= dataReceived; 
-  //     if (success) {
-  //       console.log(success);
-  //       console.log(data.page);
-  //       window.location.href = `/highscores?page=${data.page}&scoreID=${data.highscore._id}`;
-  //     } else {
-  //       console.log("error");
-  //     }
-  //   }
-  // );
+  $.post(
+    "/highscores",
+    {
+      level: levl - 1,
+    },
+    function (dataReceived, status) {
+      const {data,success}= dataReceived; 
+      if (success) {
+        console.log(success);
+        console.log(data.page);
+        window.location.href = `/highscores?page=${data.page}&scoreID=${data.highscore._id}`;
+      } else {
+        console.log("error");
+      }
+    }
+  );
 }
