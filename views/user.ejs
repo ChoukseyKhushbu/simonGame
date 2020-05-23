@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="../images/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"> 
+    <link rel="stylesheet" href="../stylesheets/global.css" />
+    <link rel="stylesheet" href="../stylesheets/highscores.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <title>Stats</title>
+</head>
+
+<body>
+    <a style="position:absolute;padding:0;" href="https://github.com/ChoukseyKhushbu/simonGame"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <div class="container" id="container">
+
+        <h1><%= userName %></h1>
+        <h2>Stats</h2>
+        <div class="table">
+            <div class="name">Rank</div>
+            <div class="value"><%= rank %></div>
+        </div>
+        <div class="table">
+            <div class="name">Percentile</div>
+            <div class="value"><%= percentile %>%</div>
+        </div>
+        <div class="table">
+            <div class="name">Highest Score</div>
+            <div class="value"><%= highestScore %></div>
+        </div>
+        <div class="table">
+            <div class="name">Latest Score</div>
+            <div class="value"><%= latestScore %></div>
+        </div>
+        <div class="table">
+            <div class="name">Average Score</div>
+            <div class="value"><%= averageScore %></div>
+        </div>
+        <div class="table">
+            <div class="name">Games Played</div>
+            <div class="value"><%= gamesPlayed %></div>
+        </div>
+        <div class="table">
+            <div class="name">Last Played</div>
+            <div class="value"><%= lastSeen %></div>
+        </div>
+       
+            <ul>
+                <li><a onclick="screenshot()"><i class="fas fa-download fa-2x"></i></a></li>
+                <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsimon-game-js.herokuapp.com%2Fuser%2F<%= userID %>&title=SimonGame&summary=Hey%21%20Checkout%20my%20score%20on%20Simon%2Cs%20Game&source=SimonGame" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a></li>
+                <li><a href="https://twitter.com/intent/tweet?text=Hey%27%20Checkout%20my%20score%20on%20Simon%2Cs%20Game&url=https://simon-game-js.herokuapp.com/user/<%= userID %>&hashtags=simonGame,game,webDevelopment" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter-square fa-2x"></i></a></li>
+                <li><a href="https://www.facebook.com/sharer.php?u=https://simon-game-js.herokuapp.com/user/<%= userID %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+            </ul>
+    
+        <div class="statsButtons">
+            <a class="button" href="/highscores">Go Back</a>
+            <a class="button" href="/logout">Log Out</a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script type='text/javascript'>
+        function screenshot() {
+            console.log("click");
+            html2canvas(document.body, {
+                onrendered: function (canvas) {
+                    canvas.toBlob(function (blob) {
+                        saveAs(blob, "SimonGameStats.png");
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

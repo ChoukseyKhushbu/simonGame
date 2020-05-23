@@ -32,27 +32,27 @@
           <div class="table">
         <%}%>
         <div class="number"><%=startRank+index%></div>
-        <div class="name"><%= score.userid.username %></div>
+        <div class="name"><a href="../user/<%= score.userid._id %>"><%= score.userid.username %></a></div>
         <div class="level"><%= score.level %></div>
       </div>
       <% }) %>
       <div class="pageContainer">
         <% if(currentPage==1){ %>
-        <a class="button active" href="?page=1&scoreID=<%= scoreID || _ %>">1</a>
+        <a class="button active" href="?page=1&scoreID=<%= scoreID %>">1</a>
         <% }else{ %>
-        <a class="button" href="?page=1&scoreID=<%= scoreID || _ %>">1</a>
+        <a class="button" href="?page=1&scoreID=<%= scoreID %>">1</a>
         <% }%> <% if(currentPage >3){ %>
         <div>-</div>
         <%}%> <% if(currentPage > 2 ){ %>
-        <a class="button" href="?page=<%= currentPage-1 %>&scoreID=<%= scoreID || _ %>"
+        <a class="button" href="?page=<%= currentPage-1 %>&scoreID=<%= scoreID %>"
           ><%= currentPage-1 %></a
         >
         <% } %> <% if(currentPage != 1 && currentPage != lastPage){ %>
-        <a class="button active" href="?page=<%= currentPage %>&scoreID=<%= scoreID || _ %>"
+        <a class="button active" href="?page=<%= currentPage %>&scoreID=<%= scoreID %>"
           ><%= currentPage %></a
         >
         <% } %> <% if(currentPage < lastPage-1) {%>
-        <a class="button" href="?page=<%= currentPage + 1 %>&scoreID=<%= scoreID || _ %>"
+        <a class="button" href="?page=<%= currentPage + 1 %>&scoreID=<%= scoreID %>"
           ><%= currentPage+1 %></a
         >
         <%}%> <% if(currentPage <= lastPage-3){ %>
