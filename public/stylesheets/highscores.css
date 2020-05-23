@@ -33,6 +33,7 @@
 .table > .number {
   min-width: 30px;
 }
+
 .button {
   margin-top: 20px;
 }
@@ -79,4 +80,23 @@ article::after {
 
 .highlight{
   background-color:var(--button-hover-color);
+}
+
+.statsButtons{
+  display: flex;
+  flex-direction: row;
+}
+
+.statsButtons > a{
+  margin: 1.5rem;
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  padding-inline-start: 0;
+  margin-top: 2em;
+}
+li{
+  flex-direction: row;
 }

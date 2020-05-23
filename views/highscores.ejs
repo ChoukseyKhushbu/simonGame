@@ -32,7 +32,7 @@
           <div class="table">
         <%}%>
         <div class="number"><%=startRank+index%></div>
-        <div class="name"><%= score.userid.username %></div>
+        <div class="name"><a href="../user/<%= score.userid._id %>"><%= score.userid.username %></a></div>
         <div class="level"><%= score.level %></div>
       </div>
       <% }) %>
