@@ -34,6 +34,16 @@
   min-width: 30px;
 }
 
+.name > a{
+  padding: 0;
+}
+.name > a:hover{
+  color: var(--bg-2-color);
+}
+li>a:hover{
+  color: var(--bg-2-color);
+}
+
 .button {
   margin-top: 20px;
 }

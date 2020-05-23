@@ -17,7 +17,7 @@ function segment(duration) {
                             duration.as('seconds') > 0 ? Math.round(duration.as('seconds')) + 's ago' : '';
 }
 
-router.get("/:userID", jwtCheck, async (req, res) => {
+router.get("/:userID", async (req, res) => {
     const userID = req.params.userID;
     try {
         let user, rank = 0, total = 0, lastSeen, highestScore = {level:0},percentile;
