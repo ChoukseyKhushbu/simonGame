@@ -5,7 +5,6 @@ const Highscores = require("../models/highscore");
 const jwtCheck = require("../middlewares/jwtCheck");
 
 router.get("/", jwtCheck, async (req, res) => {
-  console.log(req.query.page);
   const page = Number(req.query.page || 1);
   const scoreID=req.query.scoreID;
   const skip = (page - 1) * 10;
@@ -22,9 +21,9 @@ router.get("/", jwtCheck, async (req, res) => {
       .estimatedDocumentCount()
       .exec();
 
-    console.log(documentCount);
-    console.log(highscores);
-    console.log(typeof(highscores[0]._id))
+    // console.log(documentCount);
+    // console.log(highscores);
+    // console.log(typeof(highscores[0]._id))
 
     res.render("highscores", {
       usersWithHighscores: highscores,
@@ -58,7 +57,6 @@ router.post("/", jwtCheck, function (req, res) {
     }).then((count) => {
       console.log("count: ",count);
       const page = Math.ceil(count / 10);
-      console.log("page: ",page);
       res.status(200).json({
         success: true,
         data: {
