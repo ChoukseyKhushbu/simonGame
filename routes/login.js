@@ -15,6 +15,9 @@ router.post("/", function (req, res) {
   if (!username) {
     errors.username = "Username is required";
   }
+  if(username.length > 10){
+    errors.username = "limit name size to 10"
+  }
   if (!password) {
     errors.password = "Password is required";
   }

@@ -44,8 +44,8 @@ router.get("/:userID", jwtCheck, async (req, res) => {
         res.render("user", {
             rank: rank || "-",
             userName: userScores[0].userid.username || user.username,
-            highestScore: highestScore.level || "-",
-            latestScore: userScores[0].level || "-",
+            highestScore: (highestScore) ? highestScore.level : "-",
+            latestScore: (userScores) ? userScores[0].level : "-",
             averageScore: Math.ceil(total / (userScores.length)) || "-",
             gamesPlayed: userScores.length || "-",
             lastSeen: lastSeen || "-",
