@@ -38,18 +38,18 @@ router.get("/:userID", async (req, res) => {
             lastSeen = segment(moment.duration(moment().diff(userScores[0].createdAt)));
 
             const userCount = await Highscores.find().estimatedDocumentCount().exec();
-            percentile = (((userCount-rank)/userCount)*100).toFixed(1);
+            percentile = rank? (((userCount-rank)/userCount)*100).toFixed(1): "0";
         }
 
         res.render("user", {
             rank: rank || "-",
-            userName: userScores[0].userid.username || user.username,
-            highestScore: highestScore.level || "-",
-            latestScore: userScores[0].level || "-",
-            averageScore: Math.ceil(total / (userScores.length)) || "-",
-            gamesPlayed: userScores.length || "-",
+            userName: (userScores && userScores.length) ? userScores[0].userid.username : user.username,
+            highestScore: (userScores && userScores.length) ? highestScore.level : "-",
+            latestScore: (userScores && userScores.length) ? userScores[0].level : "-",
+            averageScore: (userScores && userScores.length)? Math.ceil(total / (userScores.length)) : "-",
+            gamesPlayed: userScores.length || 0,
             lastSeen: lastSeen || "-",
-            percentile:percentile || "-",
+            percentile:percentile ? percentile+"%" : "-",
             userID:userID
         });
     } catch (err) {
