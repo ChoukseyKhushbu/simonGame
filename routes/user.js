@@ -4,6 +4,7 @@ const moment = require("moment");
 const jwtCheck = require("../middlewares/jwtCheck");
 const Highscores = require("../models/highscore");
 const Users = require("../models/user");
+const statCheck = require("../middlewares/statCheck");
 
 const router = express.Router();
 
@@ -17,8 +18,10 @@ function segment(duration) {
                             duration.as('seconds') > 0 ? Math.round(duration.as('seconds')) + 's ago' : '';
 }
 
-router.get("/:userID", async (req, res) => {
+router.get("/:userID",statCheck, async (req, res) => {
+
     const userID = req.params.userID;
+    const currUserId = req.user ? req.user.id==userID ? userID : null :null;
     try {
         let user, rank = 0, total = 0, lastSeen, highestScore = {level:0},percentile;
         const userScores = await Highscores.find({ userid: userID }).populate("userid").sort({ createdAt: "desc" });
@@ -50,7 +53,8 @@ router.get("/:userID", async (req, res) => {
             gamesPlayed: userScores.length || 0,
             lastSeen: lastSeen || "-",
             percentile:percentile ? percentile+"%" : "-",
-            userID:userID
+            userID:userID,
+            currUserId:currUserId
         });
     } catch (err) {
         console.log(err);

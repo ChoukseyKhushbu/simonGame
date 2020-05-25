@@ -48,18 +48,23 @@
             <div class="name">Last Played</div>
             <div class="value"><%= lastSeen %></div>
         </div>
-       
-            <ul>
-                <li><a href="" onclick="screenshot()"><i class="fas fa-download fa-2x"></i></a></li>
-                <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsimon-game-js.herokuapp.com%2Fuser%2F<%= userID %>&title=SimonGame&summary=Hey%21%20Checkout%20my%20score%20on%20Simon%27s%20Game&source=SimonGame" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a></li>
-                <li><a href="https://twitter.com/intent/tweet?text=Hey%21%20Checkout%20my%20score%20on%20Simon%27%20Game&url=https://simon-game-js.herokuapp.com/user/<%= userID %>&hashtags=simonGame,game,webDevelopment" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter-square fa-2x"></i></a></li>
-                <li><a href="https://www.facebook.com/sharer.php?u=https://simon-game-js.herokuapp.com/user/<%= userID %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-            </ul>
-    
+       <% if(currUserId){ %>
+
+        <ul>
+            <li><a href="" onclick="screenshot()"><i class="fas fa-download fa-2x"></i></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsimon-game-js.herokuapp.com%2Fuser%2F<%= userID %>&title=SimonGame&summary=Hey%21%20Checkout%20my%20score%20on%20Simon%27s%20Game&source=SimonGame" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            <li><a href="https://twitter.com/intent/tweet?text=Hey%21%20Checkout%20my%20score%20on%20Simon%27%20Game&url=https://simon-game-js.herokuapp.com/user/<%= userID %>&hashtags=simonGame,game,webDevelopment" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter-square fa-2x"></i></a></li>
+            <li><a href="https://www.facebook.com/sharer.php?u=https://simon-game-js.herokuapp.com/user/<%= userID %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+        </ul>
+        
         <div class="statsButtons">
             <a class="button" href="/highscores">Go Back</a>
             <a class="button" href="/logout">Log Out</a>
         </div>
+        <%}else{%>
+            <a class="button loginThruStats" href="/login">Play</a href="/login">
+            
+            <%}%>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script type='text/javascript'>
