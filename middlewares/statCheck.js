@@ -10,8 +10,12 @@ const statCheck = (req, res, next) => {
                     id: payload.sub,
                     username: payload.username,
                 };
+            }else{
+                console.log("Invalid token")
             }
         });
+    }else{
+        console.log("session expired or not a user");
     }
     next();
 };
