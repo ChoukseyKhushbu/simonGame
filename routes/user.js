@@ -21,7 +21,7 @@ function segment(duration) {
 router.get("/:userID",statCheck, async (req, res) => {
 
     const userID = req.params.userID;
-    const currUserId = req.user ? req.user.id==userID ? userID : null :null;
+    const currUserId = req.user ? req.user.id == userID ? userID : req.user.id : null;
     try {
         let user, rank = 0, total = 0, lastSeen, highestScore = {level:0},percentile;
         const userScores = await Highscores.find({ userid: userID }).populate("userid").sort({ createdAt: "desc" });
